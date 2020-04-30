@@ -442,7 +442,7 @@ and _token state = parse
   (* ----------------------------------------------------------------------- *)
   (* eof *)
   (* ----------------------------------------------------------------------- *)
-  | eof { EOF (tokinfo lexbuf) }
+  | (whitespace* comment?) eof { EOF (tokinfo lexbuf) }
 
   | _ { error (spf "unrecognized symbol: %s" (tok lexbuf)) lexbuf;
         TUnknown (tokinfo lexbuf)
